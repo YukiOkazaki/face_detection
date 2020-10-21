@@ -10,12 +10,15 @@ overlay = cv2.cvtColor(overlay, cv2.COLOR_RGB2RGBA)
 
 cascade = cv2.CascadeClassifier(cascade_path)
 
-faces = cascade.detectMultiScale(gray_img, scaleFactor=1.1, minNeighbors=2, minSize=(30, 30))
+faces = cascade.detectMultiScale(
+    gray_img, scaleFactor=1.1, minNeighbors=2, minSize=(30, 30))
 
 for x, y, w, h in faces:
-    resize_overlay = cv2.resize(overlay, (w, h), interpolation=cv2.INTER_NEAREST)
+    resize_overlay = cv2.resize(
+        overlay, (w, h), interpolation=cv2.INTER_NEAREST)
     alpha = resize_overlay[:, :, 3:] / 255
-    img[y: y + h, x: x + w] = img[y: y + h, x: x + w] * (1 - alpha) + resize_overlay[:, :, :3] * alpha
+    img[y: y + h, x: x + w] = img[y: y + h, x: x + w] * \
+        (1 - alpha) + resize_overlay[:, :, :3] * alpha
 
 cv2.imshow("overlay", img)
 cv2.imwrite("overlay.png", img)

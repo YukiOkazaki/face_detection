@@ -12,11 +12,12 @@ while True:
         continue
 
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = cascade.detectMultiScale(gray_img, scaleFactor=1.3, minNeighbors=2, minSize=(50, 50))
+    faces = cascade.detectMultiScale(
+        gray_img, scaleFactor=1.3, minNeighbors=2, minSize=(50, 50))
 
     for x, y, w, h in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), thickness=2)
-    
+
     cv2.imshow("movie", img)
     key = cv2.waitKey(1)
     if key == 27:

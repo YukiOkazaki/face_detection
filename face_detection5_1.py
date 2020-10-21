@@ -7,7 +7,8 @@ gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 cascade = cv2.CascadeClassifier(cascade_path)
 
-faces = cascade.detectMultiScale(gray_img, scaleFactor=1.1, minNeighbors=2, minSize=(30, 30))
+faces = cascade.detectMultiScale(
+    gray_img, scaleFactor=1.1, minNeighbors=2, minSize=(30, 30))
 
 for x, y, w, h in faces:
     center = (int(x + w / 2), int(y + h / 2))
